@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -66,6 +67,23 @@ func (s *requestLogHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	s.handler.ServeHTTP(w, r)
 }
 
+// API (catch-all) handler
+
+func catchAll(handler http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		body, err := ioutil.ReadAll(r.Body)
+		defer r.Body.Close()
+		fmt.Println("Request body:")
+		if err != nil {
+			fmt.Printf("  Error reading body: %v\n", err)
+			return
+		}
+		if len(body) > 0 {
+			fmt.Printf("%s\n", body)
+		}
+	})
+}
+
 // HTTP Handler for Apache log
 
 func logApache(r *http.Request, created time.Time, status, bytes int) {
@@ -112,11 +130,12 @@ func main() {
 	quiet := flag.Bool("quiet", false, "Do not log requests")
 	disableCors := flag.Bool("nocors", false, "Disable CORS headers")
 	logRequest := flag.Bool("debug", false, "Log request information")
-	noCache := flag.Bool("nocache", false, "Add headers disabling HTTP cache for all requests")
+	cache := flag.Bool("cache", false, "Don't add headers disabling HTTP cache for all requests")
 
 	// Modes
 	dir := flag.String("dir", ".", "Directory to expose")
 	proxy := flag.String("proxy", "", "Act as a reverse proxy")
+	api := flag.Bool("api", false, "Catch-all handler to debug requests")
 
 	flag.Parse()
 
@@ -130,6 +149,8 @@ func main() {
 		}
 		handler = httputil.NewSingleHostReverseProxy(urlProxy)
 		handler = proxyHost(handler)
+	} else if *api {
+		handler = catchAll(handler)
 	} else {
 		handler = http.FileServer(http.Dir(*dir))
 	}
@@ -147,7 +168,7 @@ func main() {
 		}
 		handler = requestLogServer(handler)
 	}
-	if *noCache {
+	if !*cache {
 		handler = noCacheLogHandlerServer(handler)
 	}
 
