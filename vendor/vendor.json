@@ -1,0 +1,55 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "imR2wF388/0fBU6RRWx8RvTi8Q8=",
+			"path": "github.com/facebookgo/clock",
+			"revision": "600d898af40aa09a7a93ecb9265d87b0504b6f03",
+			"revisionTime": "2015-04-10T01:09:13Z"
+		},
+		{
+			"checksumSHA1": "8SgB/r3Cf+OvXmg8bIPnlEq03Bs=",
+			"path": "github.com/facebookgo/httpdown",
+			"revision": "a3b1354551a26449fbe05f5d855937f6e7acbd71",
+			"revisionTime": "2016-03-23T22:10:27Z"
+		},
+		{
+			"checksumSHA1": "SzXvrWxavFo8HD/2hnbdu17C3VE=",
+			"path": "github.com/facebookgo/stats",
+			"revision": "1b76add642e42c6ffba7211ad7b3939ce654526e",
+			"revisionTime": "2015-10-06T22:16:25Z"
+		},
+		{
+			"checksumSHA1": "o1o8PyUmoIcJw0tSFcKUk57yeBM=",
+			"path": "github.com/fiorix/go-web/httpxtra",
+			"revision": "5b593f1e89663c4ccf69cf3e7a8f4c363d0e12ec",
+			"revisionTime": "2015-02-21T14:40:11Z"
+		},
+		{
+			"checksumSHA1": "F6aWtRaqjbiLqtReuNIgl08JqhI=",
+			"path": "github.com/pkg/browser",
+			"revision": "9302be274faad99162b9d48ec97b24306872ebb0",
+			"revisionTime": "2016-01-18T05:35:52Z"
+		},
+		{
+			"checksumSHA1": "LjPdvMphElL0GOVNQCsmZMVgWIw=",
+			"path": "github.com/rs/cors",
+			"revision": "a62a804a8a009876ca59105f7899938a1349f4b3",
+			"revisionTime": "2016-06-17T23:19:35Z"
+		},
+		{
+			"checksumSHA1": "hCRfPlNpqv8tvVivLzmXsoUOf1c=",
+			"path": "github.com/rs/xhandler",
+			"revision": "ed27b6fd65218132ee50cd95f38474a3d8a2cd12",
+			"revisionTime": "2016-06-18T19:32:21Z"
+		},
+		{
+			"checksumSHA1": "9jjO5GjLa0XF/nfWihF02RoH4qc=",
+			"path": "golang.org/x/net/context",
+			"revision": "71a035914f99bb58fe82eac0f1289f10963d876c",
+			"revisionTime": "2016-09-12T21:59:12Z"
+		}
+	],
+	"rootPath": "github.com/lucindo/shttp"
+}
