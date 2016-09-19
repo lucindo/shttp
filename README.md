@@ -60,7 +60,7 @@ This mode is very useful in conjunction of `-debug` flag.
 
 Current options are:
 
-```sh
+```
 Usage of shttp:
   -api
     	Catch-all handler to debug requests
