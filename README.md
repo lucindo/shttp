@@ -89,3 +89,9 @@ Usage of shttp:
   -wtimeout duration
     	Server write timeout (default 10s)
 ```
+
+### ToDo
+
+- [ ] SSL support (maybe using Let's Encrypy)
+- [ ] Log to file
+- [ ] Daemon mode
