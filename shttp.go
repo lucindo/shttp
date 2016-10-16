@@ -73,12 +73,12 @@ func catchAll(handler http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		body, err := ioutil.ReadAll(r.Body)
 		defer r.Body.Close()
-		fmt.Println("Request body:")
 		if err != nil {
 			fmt.Printf("  Error reading body: %v\n", err)
 			return
 		}
 		if len(body) > 0 {
+			fmt.Println("Request body:")
 			fmt.Printf("%s\n", body)
 		}
 	})
