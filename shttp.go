@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"net/url"
+	"os"
+	"runtime"
 	"strings"
 	"time"
 
@@ -117,6 +119,18 @@ func formatParameterValue(value []string) string {
 	return fmt.Sprintf("%v", strings.Join(value, ","))
 }
 
+var (
+	version = "devel"
+)
+
+func usage() {
+	fmt.Fprintf(os.Stderr, "Usage: %s [OPTIONS]\n\n", os.Args[0])
+	fmt.Fprintln(os.Stderr, "OPTIONS:")
+	flag.PrintDefaults()
+	fmt.Fprintln(os.Stderr, "")
+	fmt.Printf("%s %s (runtime: %s)\n", os.Args[0], version, runtime.Version())
+}
+
 func main() {
 	// Server options
 	port := flag.Int("port", 8080, "Port to bind the server")
@@ -137,6 +151,7 @@ func main() {
 	proxy := flag.String("proxy", "", "Act as a reverse proxy")
 	api := flag.Bool("api", false, "Catch-all handler to debug requests")
 
+	flag.Usage = usage
 	flag.Parse()
 
 	var handler http.Handler
